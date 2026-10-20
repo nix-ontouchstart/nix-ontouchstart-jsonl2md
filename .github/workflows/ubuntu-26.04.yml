@@ -1,0 +1,23 @@
+# https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md
+
+name: ubuntu-26.04
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-26.04
+
+    steps:
+    - uses: actions/checkout@v7
+    - name: Platform
+      run: uname -a
+    - name: install nix from https://github.com/DeterminateSystems/nix-installer/releases/download/v3.23.3/nix-installer.sh
+      run: cat nix-installer.sh | sh -s -- install --no-confirm
+    - name: nix version
+      run: nix --version
+    - name: nix flake show
+      run: nix flake show
+    - name: nix run
+      run: echo '{"id": "123", "key": "value"}' | nix run
