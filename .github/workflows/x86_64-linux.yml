@@ -13,4 +13,5 @@ jobs:
     - name: nix version
       run: nix --version
     - name: test
-      run: echo '{"id": "123", "key": "value"}' | nix run github:nix-ontouchstart/nix-ontouchstart-jsonl2md/x86_64-linux
+      run: |
+        echo '{"id": "123", "key": "value"}' | nix run github:nix-ontouchstart/nix-ontouchstart-jsonl2md/x86_64-linux
