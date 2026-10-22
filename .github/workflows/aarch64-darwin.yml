@@ -1,14 +1,9 @@
-# https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md
-
-name: ubuntu-26.04
-
+# https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
+name: aarch64-darwin
 on: push
-
 jobs:
-  build:
-
-    runs-on: ubuntu-26.04
-
+  test:
+    runs-on: macos-26
     steps:
     - uses: actions/checkout@v7
     - name: Platform
@@ -17,7 +12,5 @@ jobs:
       run: cat nix-installer.sh | sh -s -- install --no-confirm
     - name: nix version
       run: nix --version
-    - name: nix flake show
-      run: nix flake show
-    - name: make test
-      run: make test
+    - name: test
+      run: echo '{"id": "123", "key": "value"}' | nix run github:nix-ontouchstart/nix-ontouchstart-jsonl2md/aarch64-darwin

@@ -1,14 +1,9 @@
 # https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Arm64-Readme.md
-
-name: ubuntu-26.04-arm
-
+name: aarch64-linux
 on: push
-
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-26.04-arm
-
     steps:
     - uses: actions/checkout@v7
     - name: Platform
@@ -17,7 +12,5 @@ jobs:
       run: cat nix-installer.sh | sh -s -- install --no-confirm
     - name: nix version
       run: nix --version
-    - name: nix flake show
-      run: nix flake show
-    - name: make test
-      run: make test
+    - name: test
+      run: echo '{"id": "123", "key": "value"}' | nix run github:nix-ontouchstart/nix-ontouchstart-jsonl2md/aarch64-linux
