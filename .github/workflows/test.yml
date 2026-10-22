@@ -1,11 +1,13 @@
-# https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
-name: macos-26
+# https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Arm64-Readme.md
+
+name: test
 
 on: push
 
 jobs:
-  build:
-    runs-on: macos-26
+  test:
+
+    runs-on: ubuntu-26.04-arm
 
     steps:
     - uses: actions/checkout@v7
@@ -15,7 +17,11 @@ jobs:
       run: cat nix-installer.sh | sh -s -- install --no-confirm
     - name: nix version
       run: nix --version
+    - name: rust/cargo versions
+      run: |
+        nix develop --command cargo --version
+        nix develop --command rustc --version
     - name: nix flake show
-      run: nix flake show 
+      run: nix flake show
     - name: make test
       run: make test
