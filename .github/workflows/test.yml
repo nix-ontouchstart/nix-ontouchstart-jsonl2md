@@ -1,4 +1,4 @@
-# https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
+# https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2604-Readme.md
 name: test
 
 on: push
@@ -6,7 +6,7 @@ on: push
 jobs:
   test:
 
-    runs-on: macos-26
+    runs-on: ubuntu-26.04
 
     steps:
     - uses: actions/checkout@v7
